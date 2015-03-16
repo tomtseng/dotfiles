@@ -1,16 +1,29 @@
+" Vundle stuff begins here *****
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'valloric/MatchTagAlways'
+Plugin 'bling/vim-airline'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+" Vundle stuff ends here ******
+
+set nocompatible
+
 syntax enable
 set background=dark
 colorscheme jellybeans
 
-
-set nocompatible
 filetype indent plugin on
-" syntax on
 
 set hidden
 set wildmenu
 set showcmd
 set hlsearch
+set incsearch " immediately start searching as you type
 
 set ignorecase
 set smartcase
@@ -28,6 +41,11 @@ set number
 set relativenumber
 set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
+set history=512 " remember 512 past commands
+set guioptions= " removes GUI widgets
+set scrolloff=5 " see lines above and below
+set wrap
+set textwidth=80
 
 set shiftwidth=2
 set softtabstop=2
@@ -36,7 +54,7 @@ set expandtab
 map Y y
 nnoremap <C-L> :nohl<CR><C-L>
 " remaps ,<space> to turn off hl
-nnoremap <leader><space> :nohlsearch<R>
+nnoremap <leader><space> :nohlsearch
 
 set lazyredraw
 set showmatch

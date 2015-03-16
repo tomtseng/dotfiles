@@ -140,3 +140,10 @@ alias vpn='/opt/cisco/anyconnect/bin/vpn'
 alias kee='keepass2 ~/Dropbox/kee/2.kdbx'
 
 export TERM=xterm-256color
+
+addLatexPackage() {
+  sudo mkdir /usr/share/texmf/tex/latex/$1 ;
+  sudo cp $1.sty /usr/share/texmf/tex/latex/$1 ;
+  sudo texhash ;
+}
+alias addlatex=addLatexPackage
