@@ -6,10 +6,36 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'valloric/MatchTagAlways'
 Plugin 'bling/vim-airline'
+"Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+"Plugin 'vim-scripts/a.vim' " commands to quickly switch into header files (.h)
+"Plugin 'tpop/vim-fugitive' " git commands from within vim
+Plugin 'Raimondi/delimitMate' " insert matching delimiters like parens, etc
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Vundle stuff ends here ******
+
+" Syntastic settings ***
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" end Syntastic settings *******
+
+" delimitMate settings *********
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END
+" end delimitMate settings *****
 
 set nocompatible
 
