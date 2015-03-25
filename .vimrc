@@ -1,4 +1,4 @@
-" Vundle stuff begins here *****
+" Vundle ============================ {{{
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -14,9 +14,9 @@ Plugin 'Raimondi/delimitMate' " insert matching delimiters like parens, etc
 
 call vundle#end()            " required
 filetype plugin indent on    " required
-" Vundle stuff ends here ******
+" }}}
 
-" Syntastic settings ***
+" Syntastic settings ========================== {{{
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -25,9 +25,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-" end Syntastic settings *******
+let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
+" end Syntastic settings ******* }}}
 
-" delimitMate settings *********
+" delimitMate settings ============= {{{
 augroup mydelimitMate
   au!
   au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
@@ -35,7 +36,7 @@ augroup mydelimitMate
   au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
   au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
 augroup END
-" end delimitMate settings *****
+" end delimitMate settings ***** }}}
 
 set nocompatible
 
@@ -59,8 +60,7 @@ set nostartofline
 set ruler
 set laststatus=2
 set confirm
-set visualbell
-set t_vb=
+set noerrorbells visualbell t_vb= " disable bells
 set mouse=a
 set cmdheight=2
 set number
@@ -72,6 +72,7 @@ set guioptions= " removes GUI widgets
 set scrolloff=5 " see lines above and below
 set wrap
 set textwidth=80
+set fdm=marker " folding!
 
 set shiftwidth=2
 set softtabstop=2
@@ -81,9 +82,39 @@ map Y y
 nnoremap <C-L> :nohl<CR><C-L>
 " remaps ,<space> to turn off hl
 nnoremap <leader><space> :nohlsearch
+" remove trailing whitespace
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+set pastetoggle=<F10>
 
 set lazyredraw
 set showmatch
 
+" moving up and down on wrapped lines works
 nnoremap j gj
 nnoremap k gk
+
+" settings by filetype ========================= {{{
+function! CSET()
+  set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ gcc\ -O2\ -std=c99\ -g\ -Wall\ -W\ -lm\ -o%.bin\ %\ &&\ ./%.bin;fi;fi
+  set errorformat=%f:%l:\ %m
+endfunction
+
+function! CPPSET()
+  set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -std=c++11\ -O2\ -g\ -Wall\ -W\ -O2\ -o%.bin\ %\ &&\ ./%.bin;fi;fi
+endfunction
+
+function! TEXSET()
+  set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ pdflatex\ -file-line-error-style\ %\ &&\ evince\ %:r.pdf;fi;fi
+  set errorformat=%f:%l:\ %m
+endfunction
+
+function! PYSET()
+  set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ python3\ %;fi;fi
+endfunction
+
+autocmd FileType c call CSET()
+autocmd FileType cpp call CSET()
+autocmd FileType cc call CSET()
+autocmd FileType tex call TEXSET()
+autocmd FileType py call PYSET()
+" end filetype }}}
