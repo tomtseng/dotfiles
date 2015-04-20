@@ -10,7 +10,6 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 "Plugin 'vim-scripts/a.vim' " commands to quickly switch into header files (.h)
 "Plugin 'tpop/vim-fugitive' " git commands from within vim
-Plugin 'Raimondi/delimitMate' " insert matching delimiters like parens, etc
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -112,9 +111,24 @@ function! PYSET()
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ python3\ %;fi;fi
 endfunction
 
+function! MAKEFILESET()
+  set tw=0
+  set nowrap
+  " in a Makefile we need to use <Tab> to actually produce tabs
+  set noet
+  set sts=8
+endfunction
+
+function! HTMLSET()
+  set tw=0
+  set nowrap
+endfunction
+
 autocmd FileType c call CSET()
 autocmd FileType cpp call CSET()
 autocmd FileType cc call CSET()
 autocmd FileType tex call TEXSET()
 autocmd FileType py call PYSET()
+autocmd FileType make call MAKEFILESET()
+autocmd FileType html    call HTMLSET()
 " end filetype }}}
