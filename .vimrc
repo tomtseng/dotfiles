@@ -10,6 +10,7 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
 "Plugin 'vim-scripts/a.vim' " commands to quickly switch into header files (.h)
 "Plugin 'tpop/vim-fugitive' " git commands from within vim
+Plugin 'tpope/vim-sleuth'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -21,10 +22,12 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2 " default
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
+" let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
+" TEMP CHANGE FOR AVX PROJECT
+let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic -mavx2"
 " end Syntastic settings ******* }}}
 
 " delimitMate settings ============= {{{
@@ -83,7 +86,7 @@ nnoremap <C-L> :nohl<CR><C-L>
 nnoremap <leader><space> :nohlsearch
 " remove trailing whitespace
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-set pastetoggle=<F10>
+set pastetoggle=<C-P>
 
 set lazyredraw
 set showmatch

@@ -116,7 +116,7 @@ fi
 
 # cd to saved directory on login
 if [ -e ~/.last_cd ]
-then 
+then
   cd "$(cat ~/.last_cd)"
 fi
 
@@ -129,7 +129,7 @@ logged_cd() {
 # "Hijack" cd
 alias cd="logged_cd"
 #################################
-alias compile='gcc -Wall -Wextra -Werror -std=c99 -pedantic -g'
+alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic -g'
 
 export PS1="\n\e[0;35m\u\e[0m : \w\n\[\e[0;31m\]->\[\e[0m\] "
 
