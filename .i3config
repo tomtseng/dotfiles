@@ -38,7 +38,7 @@ bindsym $mod+d exec dmenu_run
 
 exec --no-startup-id xset r rate 250 50
 exec --no-startup-id xset m 5/2 0
-exec_always xmodmap ~/.xmodmaprc
+exec xmodmap ~/.xmodmaprc
 exec xautolock -time 4 -locker 'i3lock -c 000000' &
 
 focus_follows_mouse no
@@ -160,4 +160,10 @@ bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle
 # finds out, if available)
 bar {
         status_command i3status
+        colors{
+                background #232323
+                statusline #DCDCDC
+        }
 }
+
+font pango: Ubuntu Mono 10
