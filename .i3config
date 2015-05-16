@@ -170,3 +170,4 @@ font pango: Ubuntu Mono 10
 
 client.focused          #708090 #506070 #EEEEEE
 client.focused_inactive #333333 #5F676A #EEEEEE
+exec xsetroot -solid "#232b2b"
