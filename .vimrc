@@ -1,3 +1,4 @@
+" AFTER FINISHING AVX, CHANGE SYNTASTIC C OPTIONS BACK
 " Vundle ============================ {{{
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -6,11 +7,12 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'valloric/MatchTagAlways'
 Plugin 'bling/vim-airline'
-"Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 "Plugin 'vim-scripts/a.vim' " commands to quickly switch into header files (.h)
 "Plugin 'tpop/vim-fugitive' " git commands from within vim
-Plugin 'tpope/vim-sleuth'
+"Plugin 'tpope/vim-sleuth'  " detect tabbing
+"Plugin 'kien/ctrlp.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -25,9 +27,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 " default
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-" let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
-" TEMP CHANGE FOR AVX PROJECT
-let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic -mavx2"
+" FOR RESEARCH
+let g:syntastic_c_compiler = "g++"
+let g:syntastic_c_compiler_options = "-Wall -Wextra -Wpedantic -mavx2 -I/opt/local/include"
 " end Syntastic settings ******* }}}
 
 " delimitMate settings ============= {{{
@@ -86,7 +88,8 @@ nnoremap <C-L> :nohl<CR><C-L>
 nnoremap <leader><space> :nohlsearch
 " remove trailing whitespace
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-set pastetoggle=<C-P>
+set pastetoggle=<C-O>
+map <C-n> :NERDTreeToggle<CR>
 
 set lazyredraw
 set showmatch
@@ -94,6 +97,8 @@ set showmatch
 " moving up and down on wrapped lines works
 nnoremap j gj
 nnoremap k gk
+
+nnoremap ; :
 
 " settings by filetype ========================= {{{
 function! CSET()
