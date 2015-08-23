@@ -9,6 +9,7 @@ Plugin 'valloric/MatchTagAlways'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+"Plugin 'rust-lang/rust.vim'
 "Plugin 'vim-scripts/a.vim' " commands to quickly switch into header files (.h)
 "Plugin 'tpop/vim-fugitive' " git commands from within vim
 "Plugin 'tpope/vim-sleuth'  " detect tabbing
@@ -68,7 +69,6 @@ set noerrorbells visualbell t_vb= " disable bells
 set mouse=a
 set cmdheight=2
 set number
-set relativenumber
 set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
 set history=512 " remember 512 past commands
@@ -76,7 +76,7 @@ set guioptions= " removes GUI widgets
 set scrolloff=5 " see lines above and below
 set wrap
 set textwidth=80
-set fdm=marker " folding!
+set fdm=marker " folding
 
 set shiftwidth=2
 set softtabstop=2
@@ -84,8 +84,6 @@ set expandtab
 
 map Y y
 nnoremap <C-L> :nohl<CR><C-L>
-" remaps ,<space> to turn off hl
-nnoremap <leader><space> :nohlsearch
 " remove trailing whitespace
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 set pastetoggle=<C-O>
@@ -97,8 +95,6 @@ set showmatch
 " moving up and down on wrapped lines works
 nnoremap j gj
 nnoremap k gk
-
-nnoremap ; :
 
 " settings by filetype ========================= {{{
 function! CSET()
@@ -136,7 +132,7 @@ autocmd FileType c call CSET()
 autocmd FileType cpp call CSET()
 autocmd FileType cc call CSET()
 autocmd FileType tex call TEXSET()
-autocmd FileType py call PYSET()
+autocmd FileType python call PYSET()
 autocmd FileType make call MAKEFILESET()
 autocmd FileType html    call HTMLSET()
 " end filetype }}}
