@@ -1,4 +1,3 @@
-" AFTER FINISHING AVX, CHANGE SYNTASTIC C OPTIONS BACK
 " Vundle ============================ {{{
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -28,9 +27,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 " default
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-" FOR RESEARCH
-let g:syntastic_c_compiler = "g++"
-let g:syntastic_c_compiler_options = "-Wall -Wextra -Wpedantic -mavx2 -I/opt/local/include"
+let g:syntastic_c_compiler_options = "-std=c99 -Wall -Wextra -Wpedantic -I/opt/local/include"
 " end Syntastic settings ******* }}}
 
 " delimitMate settings ============= {{{
