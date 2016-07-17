@@ -8,11 +8,12 @@ Plugin 'valloric/MatchTagAlways'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'godlygeek/tabular'
+Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rust-lang/rust.vim'
-"Plugin 'vim-scripts/a.vim' " commands to quickly switch into header files (.h)
-"Plugin 'tpop/vim-fugitive' " git commands from within vim
-"Plugin 'tpope/vim-sleuth'  " detect tabbing
-"Plugin 'kien/ctrlp.vim'
+"Plugin 'vim-scripts/a.vim'  " commands to quickly switch into header files (.h)
+"Plugin 'tpop/vim-fugitive'  " git commands from within vim
+"Plugin 'ctrlpvim/ctrlp.vim' " fuzzy file (and other stuff) finder
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -27,7 +28,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 " default
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_c_compiler_options = "-std=c99 -Wall -Wextra -Wpedantic -I/opt/local/include"
+let g:syntastic_c_compiler_options = "-std=c99 -Wall -Wextra -Wpedantic -Wshadow -Wstrict-overflow -fno-strict-aliasing"
+let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic -Wshadow -Wstrict-overflow -fno-strict-aliasing"
 " end Syntastic settings ******* }}}
 
 " delimitMate settings ============= {{{
@@ -83,8 +85,9 @@ map Y y
 nnoremap <C-L> :nohl<CR><C-L>
 " remove trailing whitespace
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-set pastetoggle=<C-O>
+set pastetoggle=<C-F11>
 map <C-n> :NERDTreeToggle<CR>
+vmap a= :Tabularize /=<CR>
 
 set lazyredraw
 set showmatch
