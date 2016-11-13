@@ -1,4 +1,4 @@
-" Vundle ============================ {{{
+" Vundle {{{
 filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -11,15 +11,15 @@ Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rust-lang/rust.vim'
-"Plugin 'vim-scripts/a.vim'  " commands to quickly switch into header files (.h)
-"Plugin 'tpop/vim-fugitive'  " git commands from within vim
-"Plugin 'ctrlpvim/ctrlp.vim' " fuzzy file (and other stuff) finder
+Plugin 'vim-scripts/a.vim'  " commands to quickly switch into header files (.h)
+Plugin 'tpope/vim-fugitive'  " git commands from within vim
+Plugin 'ctrlpvim/ctrlp.vim' " fuzzy file (and other stuff) finder
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 " }}}
 
-" Syntastic settings ========================== {{{
+" Syntastic settings {{{
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -30,9 +30,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_c_compiler_options = "-std=c99 -Wall -Wextra -Wpedantic -Wshadow -Wstrict-overflow -fno-strict-aliasing"
 let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic -Wshadow -Wstrict-overflow -fno-strict-aliasing"
-" end Syntastic settings ******* }}}
+" end Syntastic settings }}}
 
-" delimitMate settings ============= {{{
+" delimitMate settings {{{
 augroup mydelimitMate
   au!
   au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
@@ -40,7 +40,12 @@ augroup mydelimitMate
   au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
   au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
 augroup END
-" end delimitMate settings ***** }}}
+" end delimitMate settings }}}
+
+" YCM settings {{{
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf.py'
+let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf.py']
+" end YCM settings }}}
 
 set nocompatible
 
@@ -96,7 +101,7 @@ set showmatch
 nnoremap j gj
 nnoremap k gk
 
-" settings by filetype ========================= {{{
+" settings by filetype {{{
 function! CSET()
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ gcc\ -O2\ -std=c99\ -g\ -Wall\ -W\ -lm\ -o%.bin\ %\ &&\ ./%.bin;fi;fi
   set errorformat=%f:%l:\ %m
@@ -135,4 +140,4 @@ autocmd FileType tex call TEXSET()
 autocmd FileType python call PYSET()
 autocmd FileType make call MAKEFILESET()
 autocmd FileType html    call HTMLSET()
-" end filetype }}}
+" end settings by filetype }}}

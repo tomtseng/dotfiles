@@ -133,11 +133,10 @@ alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic -g'
 
 export PS1="\n\e[0;35m\u\e[0m : \w\n\[\e[0;31m\]->\[\e[0m\] "
 
-set -o vi
-
 alias vpn='/opt/cisco/anyconnect/bin/vpn'
-
 alias kee='keepass2 ~/Dropbox/kee/2.kdbx'
+# ask for permission before deletion
+alias rm='rm -i'
 
 export TERM=xterm-256color
 
@@ -147,3 +146,6 @@ addLatexPackage() {
   sudo texhash ;
 }
 alias addlatex=addLatexPackage
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
