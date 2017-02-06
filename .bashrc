@@ -129,7 +129,8 @@ logged_cd() {
 # "Hijack" cd
 alias cd="logged_cd"
 #################################
-alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic -g'
+alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic'
+alias g11='g++ -std=c++11 -Wall'
 
 export PS1="\n\e[0;35m\u\e[0m : \w\n\[\e[0;31m\]->\[\e[0m\] "
 
@@ -146,6 +147,3 @@ addLatexPackage() {
   sudo texhash ;
 }
 alias addlatex=addLatexPackage
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
