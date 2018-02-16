@@ -36,8 +36,10 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# mouse and keyboard speed
 exec --no-startup-id xset r rate 250 125
 exec --no-startup-id xset m 3 1
+
 exec xmodmap ~/.xmodmaprc
 
 focus_follows_mouse no
@@ -115,7 +117,13 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+Pause exec i3lock -i ~/.i3/circlelock.png -c 000000
 
 # suspend computer
-bindsym $mod+Shift+s exec dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend; exec i3lock -i ~/.i3/circlelock.png -c 000000
+# To make pm-suspend work from i3, see here: https://stackoverflow.com/questions/20312961/why-sudo-pm-suspend-does-not-work-in-i3-tiling-window-manager.
+# Alternatively, this also works:
+#   bindsym $mod+Shift+s exec dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend; exec i3lock -i ~/.i3/circlelock.png -c 000000
+# Doing the above sometimes causes my WiFi connection at college to not
+# reconnect upon unsuspending, so I use pm-suspend instead
+bindsym $mod+Shift+s exec "sudo pm-suspend | i3lock -i ~/.i3/circlelock.png -c 000000"
+
 
 # shut down
 bindsym $mod+Shift+Down exec dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 "org.freedesktop.login1.Manager.PowerOff" boolean:true
