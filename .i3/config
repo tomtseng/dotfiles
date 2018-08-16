@@ -36,11 +36,15 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-exec --no-startup-id xset r rate 250 125
-exec --no-startup-id xset m 3 1
+# keyboard and mouse rate
+exec xset r rate 250 125
+exec xset m 3 1
 exec xmodmap ~/.xmodmaprc
 
 focus_follows_mouse no
+
+# natural touchpad scrolling
+exec --no-startup-id synclient HorizEdgeScroll=1 VertEdgeScroll=1 VertScrollDelta=-111
 
 # change focus
 bindsym $mod+h focus left
@@ -179,5 +183,5 @@ exec xsetroot -solid "#232b2b"
 exec --no-startup-id dropbox start
 # network applet
 exec --no-startup-id exec nm-applet
-exec --no-startup-id exec redshift
+exec --no-startup-id exec redshift-gtk
 exec xautolock -time 4 -locker 'i3lock -i ~/.i3/circlelock.png -c 000000' &
