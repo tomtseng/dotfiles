@@ -10,10 +10,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'Valloric/YouCompleteMe'
-"Plugin 'rust-lang/rust.vim'
-Plugin 'vim-scripts/a.vim'  " commands to quickly switch into header files (.h)
-Plugin 'tpope/vim-fugitive'  " git commands from within vim
-Plugin 'ctrlpvim/ctrlp.vim' " fuzzy file (and other stuff) finder
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -74,7 +70,7 @@ set mouse=a
 set cmdheight=2
 set number
 set notimeout ttimeout ttimeoutlen=200
-set pastetoggle=<F11>
+set pastetoggle=<F9>
 set history=512 " remember 512 past commands
 set guioptions= " removes GUI widgets
 set scrolloff=5 " see lines above and below
@@ -90,9 +86,11 @@ map Y y
 nnoremap <C-L> :nohl<CR><C-L>
 " remove trailing whitespace
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-set pastetoggle=<C-F11>
 map <C-n> :NERDTreeToggle<CR>
 vmap a= :Tabularize /=<CR>
+set rtp+=~/.fzf
+" fix background color in tmux
+set t_ut=
 
 set lazyredraw
 set showmatch
