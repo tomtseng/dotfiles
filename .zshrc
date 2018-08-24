@@ -7,7 +7,7 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="tjkirch"
+ZSH_THEME="candy"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -63,6 +63,8 @@ ZSH_THEME="tjkirch"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -96,14 +98,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export TERM=xterm-256color
-
-alias ls='ls --color=auto'
-alias vi=vim
-alias v=vim
-# ask for confirmation on rm
-alias rm='rm -i'
-alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic'
-alias g11='g++ -std=c++11 -Wall'
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export EDITOR="$VISUAL"
+export TERM=xterm-256color
+export VISUAL=vim
+
+alias diff='vimdiff'
+alias ls='ls --color=auto'
+alias g11='g++ -std=c++11 -Wall'
+alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic'
+alias rm='rm -i'
+alias szsh='source ~/.zshrc'
