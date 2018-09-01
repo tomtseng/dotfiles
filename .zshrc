@@ -100,9 +100,9 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export EDITOR="$VISUAL"
 export TERM=xterm-256color
-export VISUAL=vim
+export VISUAL='vim'
+export EDITOR="$VISUAL"
 
 alias diff='vimdiff'
 alias ls='ls --color=auto'
@@ -110,3 +110,5 @@ alias g11='g++ -std=c++11 -Wall'
 alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic'
 alias rm='rm -i'
 alias szsh='source ~/.zshrc'
+alias v='vim'
+alias vi='vim'
