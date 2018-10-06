@@ -98,7 +98,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [ "$TMUX" = "" ]; then tmux new -s startup; fi
+if [ "$TMUX" = "" ]; then tmux -2; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -112,5 +112,30 @@ alias g11='g++ -std=c++11 -Wall'
 alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic'
 alias rm='rm -i'
 alias szsh='source ~/.zshrc'
+alias tmux='tmux -2'
 alias v='vim'
 alias vi='vim'
+
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf-tmux +m) &&
+  cd "$dir"
+}
+
+# fd2 - cd into the directory of the selected file
+fd2() {
+   local file
+   local dir
+   file=$(fzf-tmux +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
