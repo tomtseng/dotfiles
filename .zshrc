@@ -98,6 +98,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# smartcase tab-completion
+zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}'
+
 if [ "$TMUX" = "" ]; then tmux -2; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
