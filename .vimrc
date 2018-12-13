@@ -92,6 +92,8 @@ set rtp+=~/.fzf
 " fix background color in tmux
 set t_ut=
 
+let g:airline#extensions#tabline#enabled = 1
+
 set lazyredraw
 set showmatch
 
