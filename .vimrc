@@ -44,19 +44,17 @@ let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf
 " end YCM settings }}}
 
 set nocompatible
-
 syntax enable
+filetype indent plugin on
+
 set background=dark
 colorscheme jellybeans
-
-filetype indent plugin on
 
 set hidden
 set wildmenu
 set showcmd
 set hlsearch
 set incsearch " immediately start searching as you type
-
 set ignorecase
 set smartcase
 set backspace=indent,eol,start
@@ -77,29 +75,57 @@ set scrolloff=5 " see lines above and below
 set wrap
 set textwidth=80
 set fdm=marker " folding
-
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-
-map Y y
-nnoremap <C-L> :nohl<CR><C-L>
-" remove trailing whitespace
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-map <C-n> :NERDTreeToggle<CR>
-vmap a= :Tabularize /=<CR>
-set rtp+=~/.fzf
+set lazyredraw
+set showmatch
 " fix background color in tmux
 set t_ut=
 
+set rtp+=~/.fzf
+
 let g:airline#extensions#tabline#enabled = 1
 
-set lazyredraw
-set showmatch
+" set <leader> to the space bar
+let mapleader = "\<Space>"
+
+nnoremap Y y$
+nnoremap <C-L> :nohl<CR><C-L>
+nnoremap <C-p> :FZF<CR>
+" remove trailing whitespace
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+vnoremap a= :Tabularize /=<CR>
 
 " moving up and down on wrapped lines works
 nnoremap j gj
 nnoremap k gk
+
+nnoremap <leader>gt :YcmCompleter GetType<CR>
+nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
+
+" Delete buffers not currently shown.
+" Copied from https://stackoverflow.com/a/7321131
+function! DeleteInactiveBufs()
+    "From tabpagebuflist() help, get a list of all buffers in all tabs
+    let tablist = []
+    for i in range(tabpagenr('$'))
+        call extend(tablist, tabpagebuflist(i + 1))
+    endfor
+
+    let nWipeouts = 0
+    for i in range(1, bufnr('$'))
+        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+            silent exec 'bwipeout' i
+            let nWipeouts = nWipeouts + 1
+        endif
+    endfor
+    echomsg nWipeouts . ' buffer(s) wiped out'
+endfunction
+command! Bdi :call DeleteInactiveBufs()
 
 " settings by filetype {{{
 function! CSET()
