@@ -7,26 +7,12 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'valloric/MatchTagAlways'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 " }}}
-
-" Syntastic settings {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 2 " default
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_c_compiler_options = "-std=c99 -Wall -Wextra -Wpedantic -Wshadow -Wstrict-overflow -fno-strict-aliasing"
-let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic -Wshadow -Wstrict-overflow -fno-strict-aliasing"
-" end Syntastic settings }}}
 
 " delimitMate settings {{{
 augroup mydelimitMate
