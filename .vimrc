@@ -4,30 +4,51 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
+
 Plugin 'valloric/MatchTagAlways'
-Plugin 'bling/vim-airline'
-Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
+Plugin 'sirver/ultisnips'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/vim-peekaboo'
+Plugin 'lervag/vimtex'
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 " }}}
 
-" delimitMate settings {{{
-augroup mydelimitMate
-  au!
-  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
-  au FileType tex let b:delimitMate_quotes = ""
-  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
-  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
-augroup END
-" end delimitMate settings }}}
+" UltiSnips settings {{{
 
-" YCM settings {{{
+" Don't use tab -- it conflicts with YouCompleteMe.
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+" }}}
+
+" Vimtex and LaTeX editing settings {{{
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+let g:vimtex_compiler_latexmk = {
+  \ 'continuous' : 0,
+\}
+
+" Need to have a vim server in order for PDF inverse search to work
+if empty(v:servername) && exists('*remote_startserver')
+  call remote_startserver('VIM')
+endif
+
+" }}}
+
+" YouCompleteMe settings {{{
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf.py']
-" end YCM settings }}}
+" end YouCompleteMe settings }}}
 
 set nocompatible
 syntax enable
@@ -69,6 +90,14 @@ set showmatch
 " fix background color in tmux
 set t_ut=
 
+" spell check with a hotkey during insert mode to correct the previous mistake
+set spell spelllang=en_us
+inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+" Allow moving left and right in insert mode
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
 set rtp+=~/.fzf
 
 let g:airline#extensions#tabline#enabled = 1
@@ -81,7 +110,6 @@ nnoremap <C-L> :nohl<CR><C-L>
 nnoremap <C-p> :FZF<CR>
 " remove trailing whitespace
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-nnoremap <C-n> :NERDTreeToggle<CR>
 vnoremap a= :Tabularize /=<CR>
 
 " moving up and down on wrapped lines works

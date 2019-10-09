@@ -112,6 +112,9 @@ export TERM=xterm-256color
 export VISUAL='vim'
 export EDITOR="$VISUAL"
 
+# Stop C-s from freezing vim
+stty -ixon
+
 alias diff='vimdiff'
 alias ls='ls --color=auto'
 alias g11='g++ -std=c++11 -Wall'
