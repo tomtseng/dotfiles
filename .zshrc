@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/tom/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -116,7 +116,7 @@ export EDITOR="$VISUAL"
 stty -ixon
 
 alias diff='vimdiff'
-alias ls='ls --color=auto'
+alias ls='ls --color=auto' # 'ls -G' for Mac
 alias g11='g++ -std=c++11 -Wall'
 alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic'
 alias rm='rm -i'
