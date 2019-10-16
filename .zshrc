@@ -121,9 +121,11 @@ alias g11='g++ -std=c++11 -Wall'
 alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic'
 alias rm='rm -i'
 alias szsh='source ~/.zshrc'
-alias tmux='tmux -2'
 alias v='vim'
 alias vi='vim'
+
+alias tmux='tmux -2'
+alias ta='tmux attach'
 
 # cdr - cd to git root
 cdr() {
