@@ -15,16 +15,18 @@ else
   abort "Could not determine OS. Aborting."
 fi
 
-###########
-# tmux setup
-###########
+#######################
+# Package manager setup
+#######################
 
 if [ ${os} == "mac" ]; then
-  brew install tmux
+  # Install brew
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew update
 elif [ ${os} == "linux" ]; then
-  sudo apt install tmux
+  sudo apt update
+  sudo apt upgrade
 fi
-cp .tmux.conf ~/.tmux.conf
 
 ###########
 # fzf setup
@@ -42,11 +44,19 @@ if [ ${os} == "mac" ]; then
 elif [ ${os} == "linux" ]; then
   curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
   sudo dpkg -i ripgrep_11.0.2_amd64.deb
+  rm ripgrep_11.0.2_amd64.deb
 fi
 
 ###########
 # zsh setup
 ###########
+
+if [ ${os} == "mac" ]; then
+  brew install zsh zsh-completions
+elif [ ${os} == "linux" ]; then
+  sudo apt install zsh
+fi
+chsh -s $(which zsh)
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 cp .zshrc ~/.zshrc
@@ -61,11 +71,18 @@ source ~/.zshrc
 ## Vim setup
 ############
 
+# Update vim to get useful support like clipboard and clientserver
+if [ ${os} == "mac" ]; then
+  brew install vim
+elif [ ${os} == "linux" ]; then
+  sudo apt install vim-gtk
+fi
+
 cp .vimrc ~/.vimrc
 
 mkdir -p ~/.vim/colors
 cd ~/.vim/colors
-curl --remote_name https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+curl --remote-name https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
 cd -
 
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -84,3 +101,14 @@ elif [ ${os} == "linux" ]; then
 fi
 
 cp -r .vim/UltiSnips ~/.vim
+
+###########
+# tmux setup
+###########
+
+if [ ${os} == "mac" ]; then
+  brew install tmux
+elif [ ${os} == "linux" ]; then
+  sudo apt install tmux
+fi
+cp .tmux.conf ~/.tmux.conf
