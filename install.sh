@@ -24,8 +24,8 @@ if [ ${os} == "mac" ]; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   brew update
 elif [ ${os} == "linux" ]; then
-  sudo apt update
-  sudo apt upgrade
+  sudo apt --assume-yes update
+  sudo apt --assume-yes upgrade
 fi
 
 ###########
@@ -42,8 +42,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 if [ ${os} == "mac" ]; then
   brew install ripgrep
 elif [ ${os} == "linux" ]; then
-  curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
-  sudo dpkg -i ripgrep_11.0.2_amd64.deb
+  curl --location --remote-name https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
+  sudo dpkg --install ripgrep_11.0.2_amd64.deb
   rm ripgrep_11.0.2_amd64.deb
 fi
 
@@ -54,11 +54,11 @@ fi
 if [ ${os} == "mac" ]; then
   brew install zsh zsh-completions
 elif [ ${os} == "linux" ]; then
-  sudo apt install zsh
+  sudo apt --assume-yes install zsh
 fi
 chsh -s $(which zsh)
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 cp .zshrc ~/.zshrc
 cp .oh-my-zsh/themes/* ~/.oh-my-zsh/themes/
 
@@ -73,7 +73,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 if [ ${os} == "mac" ]; then
   brew install vim
 elif [ ${os} == "linux" ]; then
-  sudo apt install vim-gtk
+  sudo apt --assume-yes install vim-gtk
 fi
 
 cp .vimrc ~/.vimrc
@@ -92,7 +92,7 @@ if [ ${os} == "mac" ]; then
   ./install.py --clang-completer
   cd -
 elif [ ${os} == "linux" ]; then
-  sudo apt install build-essential cmake python3-dev
+  sudo apt --assume-yes install build-essential cmake python3-dev
   cd ~/.vim/bundle/YouCompleteMe
   python3 install.py --clang-completer
   cd -
@@ -107,6 +107,6 @@ cp -r .vim/UltiSnips ~/.vim
 if [ ${os} == "mac" ]; then
   brew install tmux
 elif [ ${os} == "linux" ]; then
-  sudo apt install tmux
+  sudo apt --assume-yes install tmux
 fi
 cp .tmux.conf ~/.tmux.conf
