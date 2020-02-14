@@ -324,10 +324,12 @@ snippet rij "mrij" i
 (${1:x}_${2:n})_{${3:$2}\\in${4:\\N}}$0
 endsnippet
 
+context "math()"
 snippet <= "leq" iA
 \le 
 endsnippet
 
+context "math()"
 snippet >= "geq" iA
 \ge 
 endsnippet
@@ -426,17 +428,12 @@ endsnippet
 
 priority 100
 snippet ** "cdot" iA
-\cdot 
-endsnippet
-
-context "math()"
-snippet norm "norm" iA
-\|$1\|$0
+\cdot
 endsnippet
 
 priority 100
 context "math()"
-snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
+snippet '(?<!\\)(ln|log|exp|star|perp)' "ln" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
@@ -572,14 +569,15 @@ snippet tt "text" iA
 endsnippet
 
 context "math()"
+snippet msf "mathsf" iA
+\mathsf{$1}$0
+endsnippet
+
+context "math()"
 snippet case "cases" wA
 \begin{cases}
 	$1
 \end{cases}
-endsnippet
-
-snippet SI "SI" iA
-\SI{$1}{$2}
 endsnippet
 
 snippet bigfun "Big function" iA
@@ -619,15 +617,6 @@ endsnippet
 
 snippet letw "let omega" iA
 Let $\Omega \subset \C$ be open.
-endsnippet
-
-
-snippet HH "H" iA
-\mathbb{H}
-endsnippet
-
-snippet DD "D" iA
-\mathbb{D}
 endsnippet
 
 snippet HTO "Huge TODO" bA

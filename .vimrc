@@ -50,6 +50,9 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_con
 let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf.py']
 " end YouCompleteMe settings }}}
 
+" vim-commentary settings
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+
 set nocompatible
 syntax enable
 filetype indent plugin on
@@ -120,6 +123,8 @@ nnoremap <leader>gt :YcmCompleter GetType<CR>
 nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
+
+nnoremap <leader><Space> :cd ..<CR>
 
 " Delete buffers not currently shown.
 " Copied from https://stackoverflow.com/a/7321131

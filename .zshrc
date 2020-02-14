@@ -69,6 +69,7 @@ ZSH_THEME="candy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  fasd
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -108,6 +109,9 @@ if [ "$TMUX" = "" ]; then tmux -2; fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Tell fzf to use ripgrep so that we ignore files covered by .gitignore
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+
 export TERM=xterm-256color
 export VISUAL='vim'
 export EDITOR="$VISUAL"
@@ -115,6 +119,11 @@ export EDITOR="$VISUAL"
 # Stop C-s from freezing vim
 stty -ixon
 
+alias bb='bazel build'
+alias bbc='bazel build \...'
+alias btc='bazel build \...'
+alias br='bazel run'
+alias cpplint='cpplint --filter=-legal/copyright'
 alias diff='vimdiff'
 alias ls='ls --color=auto' # 'ls -G' for Mac
 alias g11='g++ -std=c++11 -Wall'
@@ -142,9 +151,9 @@ fd() {
 
 # fd2 - cd into the directory of the selected file
 fd2() {
-   local file
-   local dir
-   file=$(fzf-tmux +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+  local file
+  local dir
+  file=$(fzf-tmux +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
