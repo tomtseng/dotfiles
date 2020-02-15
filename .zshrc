@@ -121,7 +121,7 @@ stty -ixon
 
 alias bb='bazel build'
 alias bbc='bazel build \...'
-alias btc='bazel build \...'
+alias btc='bazel test \...'
 alias br='bazel run'
 alias cpplint='cpplint --filter=-legal/copyright'
 alias diff='vimdiff'
