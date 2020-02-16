@@ -28,6 +28,13 @@ elif [ ${os} == "linux" ]; then
   sudo apt --assume-yes upgrade
 fi
 
+# Miscellaneous installations
+if [ ${os} == "mac" ]; then
+  brew install mosh
+elif [ ${os} == "linux" ]; then
+  sudo apt --assume-yes install mosh
+fi
+
 ###########
 # fzf setup
 ###########
