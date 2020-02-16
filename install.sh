@@ -12,7 +12,7 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
   os="linux"
 else
-  abort "Could not determine OS. Aborting."
+  abort "Could not determine OS."
 fi
 
 #######################
