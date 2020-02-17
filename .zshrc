@@ -121,12 +121,13 @@ stty -ixon
 
 alias bb='bazel build'
 alias bbc='bazel build \...'
-alias btc='bazel test \...'
+alias btc='bazel test --test_output=streamed \...'
 alias br='bazel run'
 alias cpplint='cpplint --filter=-legal/copyright'
 alias diff='vimdiff'
 alias ls='ls --color=auto' # 'ls -G' for Mac
 alias g11='g++ -std=c++11 -Wall'
+alias g17='g++ -std=c++17 -Wall'
 alias gcc99='gcc -Wall -Wextra -Werror -std=c99 -pedantic'
 alias rm='rm -i'
 alias szsh='source ~/.zshrc'
