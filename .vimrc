@@ -93,6 +93,11 @@ set showmatch
 " fix background color in tmux
 set t_ut=
 
+" Limit time spent on delimiter matching. This matching takes a long time on
+" large LaTeX files.
+let g:matchparen_timeout = 20  " milliseconds
+let g:matchparen_insert_timeout = 20  " milliseconds
+
 " spell check with a hotkey during insert mode to correct the previous mistake
 set spell spelllang=en_us
 inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
@@ -156,11 +161,6 @@ function! CPPSET()
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -std=c++11\ -O2\ -g\ -Wall\ -W\ -O2\ -o%.bin\ %\ &&\ ./%.bin;fi;fi
 endfunction
 
-function! TEXSET()
-  set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ pdflatex\ -file-line-error-style\ %\ &&\ evince\ %:r.pdf;fi;fi
-  set errorformat=%f:%l:\ %m
-endfunction
-
 function! PYSET()
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ python3\ %;fi;fi
 endfunction
@@ -181,7 +181,6 @@ endfunction
 autocmd FileType c call CSET()
 autocmd FileType cpp call CSET()
 autocmd FileType cc call CSET()
-autocmd FileType tex call TEXSET()
 autocmd FileType python call PYSET()
 autocmd FileType make call MAKEFILESET()
 autocmd FileType html    call HTMLSET()
