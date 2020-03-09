@@ -284,7 +284,7 @@ snippet prod "product" w
 endsnippet
 
 snippet part "d/dx" w
-\frac{\partial ${1:V}}{\partial ${2:x}} $0
+\frac{\partial ${1:}}{\partial ${2:x}} $0
 endsnippet
 
 context "math()"
@@ -569,6 +569,11 @@ snippet tt "text" iA
 endsnippet
 
 context "math()"
+snippet mbf "mathbf" iA
+\mathbf{$1}$0
+endsnippet
+
+context "math()"
 snippet msf "mathsf" iA
 \mathsf{$1}$0
 endsnippet
@@ -601,22 +606,6 @@ priority 100
 context "math()"
 snippet "([a-zA-Z])bar" "bar" riA
 \overline{`!p snip.rv=match.group(1)`}
-endsnippet
-
-priority 10
-context "math()"
-snippet "hat" "hat" riA
-\hat{$1}$0
-endsnippet
-
-priority 100
-context "math()"
-snippet "([a-zA-Z])hat" "hat" riA
-\hat{`!p snip.rv=match.group(1)`}
-endsnippet
-
-snippet letw "let omega" iA
-Let $\Omega \subset \C$ be open.
 endsnippet
 
 snippet HTO "Huge TODO" bA
