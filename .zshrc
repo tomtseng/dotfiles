@@ -120,6 +120,7 @@ stty -ixon
 
 alias bb='bazel build'
 alias bbc='bazel build \...'
+alias bce='bazel clean --expunge'
 alias btc='bazel test --test_output=streamed \...'
 alias br='bazel run'
 alias cpplint='cpplint --filter=-legal/copyright,-build/include_order'
