@@ -65,7 +65,7 @@ elif [ ${os} == "linux" ]; then
 fi
 chsh -s $(which zsh)
 
-bash -c "$(RUNZSH=no curl --fail --silent --show-error --location https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUNZSH=no bash -c "$(curl --fail --silent --show-error --location https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 cp .zshrc ~/.zshrc
 cp .oh-my-zsh/themes/* ~/.oh-my-zsh/themes/
 
