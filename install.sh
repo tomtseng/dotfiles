@@ -106,6 +106,8 @@ elif [ ${os} == "linux" ]; then
 fi
 
 cp -r .vim/UltiSnips ~/.vim
+mkdir -p ~/.vim/bundle/YouCompleteMe/cpp
+cp basic_ycm_extra_conf.py ~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf.py
 
 ###########
 # tmux setup
