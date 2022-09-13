@@ -42,9 +42,9 @@ fi
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --key-bindings --completion --no-update-rc
 
-###########
+###############
 # ripgrep setup
-###########
+###############
 
 if [ ${os} == "mac" ]; then
   brew install ripgrep
@@ -119,3 +119,11 @@ elif [ ${os} == "linux" ]; then
   sudo apt --assume-yes install tmux
 fi
 cp .tmux.conf ~/.tmux.conf
+
+###########
+# git setup
+###########
+
+git config --global user.name "Tom Tseng"
+git config --global user.email "tom.hm.tseng@gmail.com"
+git config --global core.editor "vim"
