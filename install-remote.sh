@@ -74,6 +74,15 @@ cp .oh-my-zsh/themes/* ~/.oh-my-zsh/themes/
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+##############
+# bashrc setup
+##############
+
+# We set up bash in case we don't have permission to install zsh on the machine.
+curl --output ~/.git.bash-plugin.sh https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/plugins/git/git.plugin.sh
+printf "\nalias gds='git diff --staged'\n" >> ~/.git.bash-plugin.sh
+printf "\nsource ~/.git.bash-plugin.sh\n" >> ~/.bashrc
+
 ############
 ## Vim setup
 ############
