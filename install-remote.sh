@@ -84,8 +84,8 @@ curl --output ~/.git.bash-plugin.sh https://raw.githubusercontent.com/ohmybash/o
 printf "\nalias gds='git diff --staged'\n" >> ~/.git.bash-plugin.sh
 printf "\nsource ~/.git.bash-plugin.sh\n" >> ~/.bashrc
 
-printf "alias do='docker'\n" >> ~/.bashrc
-printf "alias doc='docker-compose'\n" >> ~/.bashrc
+printf "alias dk='docker'\n" >> ~/.bashrc
+printf "alias dkc='docker-compose'\n" >> ~/.bashrc
 printf "alias ta='tmux attach'\n" >> ~/.bashrc
 
 ############
