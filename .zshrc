@@ -124,6 +124,8 @@ alias bce='bazel clean --expunge'
 alias btc='bazel test --test_output=streamed \...'
 alias br='bazel run'
 alias cpplint='cpplint --filter=-legal/copyright,-build/include_order'
+alias do='docker'
+alias doc='docker-compose'
 alias diff='vimdiff'
 alias ls='ls --color=auto' # 'ls -G' for Mac
 alias g11='g++ -std=c++11 -Wall -Wextra -Wpedantic'
