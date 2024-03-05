@@ -79,6 +79,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 ##############
 
 # We set up bash in case we don't have permission to install zsh on the machine.
+cp .bashrc ~/.bashrc
 
 curl --output ~/.git.bash-plugin.sh https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/plugins/git/git.plugin.sh
 printf "\nalias gds='git diff --staged'\n" >> ~/.git.bash-plugin.sh
