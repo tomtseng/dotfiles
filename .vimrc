@@ -49,6 +49,22 @@ endif
 " YouCompleteMe settings {{{
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf.py']
+
+let g:ycm_enable_semantic_highlighting=1
+let g:ycm_enable_inlay_hints=1
+" Don't show hover hint (but can still show it manually with <plug>(YCMHover))
+let g:ycm_auto_hover=0
+
+" set <leader> to the space bar
+let mapleader = "\<Space>"
+nnoremap <leader>o <plug>(YCMHover)
+nnoremap <leader>gt :YcmCompleter GoTo<CR>
+" for when GoTo is too slow
+nnoremap <leader>gi :YcmCompleter GoToImprecise<CR>
+" prefer GoTo over these, so I use a less convenient keybinding
+nnoremap <leader>Gc :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>Gf :YcmCompleter GoToDefinition<CR>
+
 " end YouCompleteMe settings }}}
 
 " vim-commentary settings
@@ -111,9 +127,6 @@ set rtp+=~/.fzf
 
 let g:airline#extensions#tabline#enabled = 1
 
-" set <leader> to the space bar
-let mapleader = "\<Space>"
-
 nnoremap Y y$
 nnoremap <C-L> :nohl<CR><C-L>
 nnoremap <C-p> :FZF<CR>
@@ -124,11 +137,6 @@ vnoremap a= :Tabularize /=<CR>
 " moving up and down on wrapped lines works
 nnoremap j gj
 nnoremap k gk
-
-nnoremap <leader>gt :YcmCompleter GetType<CR>
-nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
 
 nnoremap <leader><Space> :cd ..<CR>
 
