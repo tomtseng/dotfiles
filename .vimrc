@@ -53,11 +53,11 @@ let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf
 let g:ycm_enable_semantic_highlighting=1
 let g:ycm_enable_inlay_hints=1
 " Don't show hover hint (but can still show it manually with <plug>(YCMHover))
-let g:ycm_auto_hover=0
+let g:ycm_auto_hover=''
 
 " set <leader> to the space bar
 let mapleader = "\<Space>"
-nnoremap <leader>o <plug>(YCMHover)
+nnoremap <leader>a <plug>(YCMHover)
 nnoremap <leader>gt :YcmCompleter GoTo<CR>
 " for when GoTo is too slow
 nnoremap <leader>gi :YcmCompleter GoToImprecise<CR>
