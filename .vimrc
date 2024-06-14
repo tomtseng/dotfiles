@@ -14,6 +14,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'junegunn/vim-peekaboo'
 Plugin 'lervag/vimtex'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'github/copilot.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
