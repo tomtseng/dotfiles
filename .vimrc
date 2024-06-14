@@ -110,6 +110,9 @@ set showmatch
 " fix background color in tmux
 set t_ut=
 
+" Syntax coloring long lines is slow
+set synmaxcol=1000
+
 " Limit time spent on delimiter matching. This matching takes a long time on
 " large LaTeX files.
 let g:matchparen_timeout = 20  " milliseconds
@@ -139,6 +142,10 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <leader><Space> :cd ..<CR>
+
+" Change cursor in insert mode https://stackoverflow.com/a/42118416/4865149
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
 " Delete buffers not currently shown.
 " Copied from https://stackoverflow.com/a/7321131
