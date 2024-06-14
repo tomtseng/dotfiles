@@ -70,6 +70,7 @@ ZSH_THEME="candy"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  pyautoenv
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
@@ -114,6 +115,8 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden'
 export TERM=xterm-256color
 export VISUAL='vim'
 export EDITOR="$VISUAL"
+
+export PYAUTOENV_VENV_NAME="venv;.venv"
 
 # Stop C-s from freezing vim
 stty -ixon
