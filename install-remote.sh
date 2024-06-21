@@ -86,10 +86,6 @@ curl --output ~/.git.bash-plugin.sh https://raw.githubusercontent.com/ohmybash/o
 printf "\nalias gds='git diff --staged'\n" >> ~/.git.bash-plugin.sh
 printf "\nsource ~/.git.bash-plugin.sh\n" >> ~/.bashrc
 
-printf "alias dk='docker'\n" >> ~/.bashrc
-printf "alias dkc='docker-compose'\n" >> ~/.bashrc
-printf "alias ta='tmux attach'\n" >> ~/.bashrc
-
 curl --output ~/.ssh-find-agent.sh https://raw.githubusercontent.com/wwalker/ssh-find-agent/master/ssh-find-agent.sh
 printf ". ~/.ssh-find-agent.sh\nssh_find_agent -a || eval \$(ssh-agent) > /dev/null\n" >> ~/.bashrc
 
