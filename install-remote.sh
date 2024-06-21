@@ -73,7 +73,7 @@ cp .oh-my-zsh/themes/* ~/.oh-my-zsh/themes/
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/hsaunders1904/pyautoenv.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/pyautoenv
+git clone 'https://github.com/hyperupcall/autoenv' ~/.autoenv
 
 ##############
 # bashrc setup
@@ -85,7 +85,6 @@ cp .bashrc ~/.bashrc
 curl --output ~/.git.bash-plugin.sh https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/plugins/git/git.plugin.sh
 printf "\nalias gds='git diff --staged'\n" >> ~/.git.bash-plugin.sh
 printf "\nsource ~/.git.bash-plugin.sh\n" >> ~/.bashrc
-printf "\nsource ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/pyautoenv/pyautoenv.bash\n" >> ~/.bashrc
 
 printf "alias dk='docker'\n" >> ~/.bashrc
 printf "alias dkc='docker-compose'\n" >> ~/.bashrc

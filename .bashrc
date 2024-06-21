@@ -147,3 +147,6 @@ addLatexPackage() {
   sudo texhash ;
 }
 alias addlatex=addLatexPackage
+
+source ~/.autoenv/activate.sh
+AUTOENV_ENABLE_LEAVE=1
