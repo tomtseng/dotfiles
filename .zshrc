@@ -76,6 +76,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+HISTSIZE=40000
+SAVEHIST=1000000
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
