@@ -11,7 +11,10 @@ Plugin 'sirver/ultisnips'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
-Plugin 'junegunn/vim-peekaboo'
+if !has('nvim')
+  " Misbehaves with avante. Use `:registers` instead.
+  Plugin 'junegunn/vim-peekaboo'
+endif
 Plugin 'lervag/vimtex'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'github/copilot.vim'
@@ -47,8 +50,6 @@ endif
 " }}}
 
 " YouCompleteMe settings {{{
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm_extra_conf.py']
 
 let g:ycm_enable_semantic_highlighting=1
 let g:ycm_enable_inlay_hints=1
@@ -57,15 +58,43 @@ let g:ycm_auto_hover=''
 
 " set <leader> to the space bar
 let mapleader = "\<Space>"
-nnoremap <leader>a <plug>(YCMHover)
-nnoremap <leader>gt :YcmCompleter GoTo<CR>
+nnoremap <leader>h <plug>(YCMHover)
+nnoremap <leader>i <Plug>(YCMToggleInlayHints)
+nnoremap <leader>t :YcmCompleter GetType<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>gj :YcmCompleter GoTo<CR>
 " for when GoTo is too slow
 nnoremap <leader>gi :YcmCompleter GoToImprecise<CR>
-" prefer GoTo over these, so I use a less convenient keybinding
+" prefer GoTo over these two, so I use a less convenient keybinding
 nnoremap <leader>Gc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>Gf :YcmCompleter GoToDefinition<CR>
 
+inoremap <C-tab> pumvisible() ? "\<C-y>" : "\<C-x>\<C-u>"
+
+" Toggle YouCompleteMe on and off with F3
+" https://vi.stackexchange.com/a/36667
+function Toggle_ycm()
+  if g:ycm_show_diagnostics_ui == 0
+    let g:ycm_auto_trigger = 1
+    let g:ycm_show_diagnostics_ui = 1
+    :YcmRestartServer
+    :e
+    :echo "YCM on"
+  elseif g:ycm_show_diagnostics_ui == 1
+    let g:ycm_auto_trigger = 0
+    let g:ycm_show_diagnostics_ui = 0
+    :YcmRestartServer
+    :e
+    :echo "YCM off"
+  endif
+endfunction
+map <F3> :call Toggle_ycm() <CR>
+
 " end YouCompleteMe settings }}}
+"
+nnoremap <leader>gC :Copilot disable<CR>
+
+packloadall  " install plugins in ~/.vim/pack/plugins/start
 
 " vim-commentary settings
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
@@ -133,6 +162,8 @@ let g:airline#extensions#tabline#enabled = 1
 nnoremap Y y$
 nnoremap <C-L> :nohl<CR><C-L>
 nnoremap <C-p> :FZF<CR>
+" Move FZF's floating window to the bottom of the screen
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.4, 'yoffset': 1, 'border': 'horizontal' } }
 " remove trailing whitespace
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 vnoremap a= :Tabularize /=<CR>
@@ -142,6 +173,13 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <leader><Space> :cd ..<CR>
+
+" Run a macro on each highlighted line with @
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
 
 " Change cursor in insert mode https://stackoverflow.com/a/42118416/4865149
 let &t_SI = "\e[6 q"
@@ -198,6 +236,8 @@ autocmd FileType c call CSET()
 autocmd FileType cpp call CSET()
 autocmd FileType cc call CSET()
 autocmd FileType python call PYSET()
+autocmd BufRead,BufNewFile *.bzl call PYSET()
 autocmd FileType make call MAKEFILESET()
 autocmd FileType html    call HTMLSET()
+autocmd BufReadPost *.yaml.gotmpl set syntax=yaml
 " end settings by filetype }}}
